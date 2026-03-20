@@ -1,4 +1,4 @@
-# Copyright (C) 2019-2024 Free Software Foundation, Inc.
+# Copyright (C) 2019-2025 Free Software Foundation, Inc.
 
 # Author: Michael Albinus <michael.albinus@gmx.de>
 # Keywords: comm, processes
@@ -25,6 +25,11 @@ SOURCE_DIR	= ~/src/tramp
 .PHONY: all autoloads check info sync test
 
 .SUFFIXES: .el
+
+VERSION	= $(shell sed -n -e 's/^;; Version: *//p' $(SOURCE_DIR)/lisp/trampver.el)
+REQUIRE	= $(shell sed -n -e 's/^;; Package-Requires: *//p' $(SOURCE_DIR)/lisp/trampver.el)
+SCRIPTV = s/Version: 0/Version: $(VERSION)/g
+SCRIPTP = s/Package-Requires: ()/Package-Requires: $(REQUIRE)/g
 
 all: sync autoloads info
 
@@ -69,7 +74,7 @@ sync:
 	cp -p $(SOURCE_DIR)/lisp/tramp-sshfs.el tramp-sshfs.el
 	cp -p $(SOURCE_DIR)/lisp/tramp-sudoedit.el tramp-sudoedit.el
 	cp -p $(SOURCE_DIR)/lisp/tramp-uu.el tramp-uu.el
-	cp -p $(SOURCE_DIR)/lisp/tramp.el tramp.el
 	cp -p $(SOURCE_DIR)/lisp/trampver.el trampver.el
+	sed -e '$(SCRIPTV)' -e '$(SCRIPTP)' $(SOURCE_DIR)/lisp/tramp.el > tramp.el
 	$(MAKE) -C texi sync
 	$(MAKE) -C test sync

@@ -1,7 +1,7 @@
 # -*- coding: utf-8; -*-
 # Emacs Makefile for Tramp
 
-# Copyright (C) 2019-2024 Free Software Foundation, Inc.
+# Copyright (C) 2019-2025 Free Software Foundation, Inc.
 
 # Author: Michael Albinus <michael.albinus@gmx.de>
 # Keywords: comm, processes
@@ -23,7 +23,7 @@
 
 EMACS		= emacs -Q -batch -L ../
 CLEAN_FILES	= .\\\#* \\\#* .*~ *~ *.elc *.log
-TESTS		= tramp-tests
+TESTS		= tramp-tests tramp-archive-tests
 SOURCE_DIR	= ~/src/tramp
 
 TRAMP_TEST_ARGS ?=
@@ -54,5 +54,9 @@ distclean: clean
 
 # This target is for the maintainer only.
 sync:
+	cp -p $(SOURCE_DIR)/test/README README
 	cp -p $(SOURCE_DIR)/test/tramp-archive-tests.el tramp-archive-tests.el
 	cp -p $(SOURCE_DIR)/test/tramp-tests.el tramp-tests.el
+	cp -p $(SOURCE_DIR)/test/resources/foo.iso/foo resources/foo.iso/foo
+	cp -p $(SOURCE_DIR)/test/resources/foo.tar.gz resources/foo.tar.gz
+	cp -p $(SOURCE_DIR)/test/resources/foo.zip resources/foo.zip

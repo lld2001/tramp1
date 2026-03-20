@@ -1,4 +1,4 @@
-# Copyright (C) 2019-2024 Free Software Foundation, Inc.
+# Copyright (C) 2019-2025 Free Software Foundation, Inc.
 
 # Author: Michael Albinus <michael.albinus@gmx.de>
 # Keywords: comm, processes
@@ -23,8 +23,8 @@
 
 MAKEINFO	= makeinfo --no-warn --no-split
 TEXI_FILES	= $(wildcard *.texi)
-CLEAN_FILES	= .\\\#* \\\#* .*~ *~ *.aux *.cp *.cps *.diff *.fn *.fns \
-		  *.ky *.log *.pg *.tmp *.toc *.tp *.vr *.vrs ../tramp.info
+CLEAN_FILES	= .\\\#* \\\#* .*~ *~ *.aux *.cp *.cps *.diff *.fn *.fns *.ky \
+		  *.kys *.log *.pg *.tmp *.toc *.tp *.vr *.vrs ../tramp.info
 SOURCE_DIR	= ~/src/tramp
 
 .PHONY: all clean sync
